@@ -254,8 +254,85 @@ input[type="number"] {
   padding-top: 14px;
 }
 
+/* 右上アクションボタン */
+.top-actions {
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  z-index: 40;
+  display: flex;
+  gap: 10px;
+}
+.action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 16px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid var(--border);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease, border-color 0.12s ease;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  white-space: nowrap;
+}
+.action-btn svg { width: 17px; height: 17px; flex-shrink: 0; }
+.action-btn:hover { transform: translateY(-1px); }
+
+.action-btn--x {
+  background: #000;
+  color: #fff;
+  border-color: rgba(255,255,255,0.25);
+}
+.action-btn--x .x-logo { fill: #fff; }
+.action-btn--x:hover { box-shadow: 0 8px 22px -6px rgba(0,0,0,0.7); border-color: rgba(255,255,255,0.5); }
+
+.action-btn--ghost {
+  background: var(--surface-strong);
+  color: var(--text);
+}
+.action-btn--ghost:hover { background: rgba(255,255,255,0.12); border-color: var(--border-strong); }
+
+.x-logo { fill: currentColor; }
+
+/* 制作者クレジット */
+.author-credit {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 14px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: var(--surface-strong);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  text-decoration: none;
+  font-size: 13px;
+  transition: border-color 0.12s ease, color 0.12s ease, transform 0.12s ease;
+}
+.author-credit .x-logo { width: 14px; height: 14px; fill: var(--text-dim); transition: fill 0.12s ease; }
+.author-credit b { color: var(--text); font-weight: 600; }
+.author-credit:hover { border-color: var(--border-strong); color: var(--text); transform: translateY(-1px); }
+.author-credit:hover .x-logo { fill: var(--text); }
+
 /* フッター */
 .site-footer { text-align: center; padding: 10px 20px 40px; color: var(--text-faint); font-size: 13px; }
+.footer-links { margin-top: 6px; }
+.footer-links a { color: var(--text-dim); text-decoration: none; }
+.footer-links a:hover { color: var(--accent); text-decoration: underline; }
+.footer-links .sep { margin: 0 10px; color: var(--text-faint); }
+
+/* 右上ボタンが狭い画面でヘッダーに被らないよう調整 */
+@media (max-width: 600px) {
+  .top-actions { top: 12px; right: 12px; gap: 8px; }
+  .action-btn { height: 36px; padding: 0 12px; font-size: 13px; }
+  .action-btn--ghost span { display: none; }
+  .action-btn--ghost { padding: 0 11px; }
+  .site-header { padding-top: 72px; }
+}
 
 /* パレット ポップオーバー */
 .palette {
