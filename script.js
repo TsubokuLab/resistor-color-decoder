@@ -429,7 +429,6 @@ function setupShare() {
     "https://twitter.com/intent/tweet?" +
     "text=" + encodeURIComponent(text) +
     "&url=" + encodeURIComponent(url) +
-    "&via=kohack_v" +
     "&hashtags=" + encodeURIComponent("電子工作,抵抗");
   btn.setAttribute("href", intent);
 }
