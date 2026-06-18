@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>抵抗カラーコード デコーダー</title>
+  <meta name="description" content="抵抗のカラーバンドをクリックして色を変えるだけで抵抗値を計算。LED用の電流制限抵抗も計算できます。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="bg-orbs" aria-hidden="true">
+    <span class="orb orb-1"></span>
+    <span class="orb orb-2"></span>
+    <span class="orb orb-3"></span>
+  </div>
+
+  <header class="site-header">
+    <h1 class="site-title">抵抗カラーコード <span>デコーダー</span></h1>
+    <p class="site-subtitle">バンドをクリックして色を選ぶだけ。抵抗値がリアルタイムで計算されます。</p>
+  </header>
+
+  <main>
+    <!-- ===== メイン：カラーコード デコーダー ===== -->
+    <section class="card decoder" aria-labelledby="decoder-heading">
+      <div class="card-head">
+        <h2 id="decoder-heading">カラーコード読み取り</h2>
+        <div class="band-select">
+          <label for="band-count">バンド数</label>
+          <div class="select-wrap">
+            <select id="band-count">
+              <option value="4" selected>4本帯</option>
+              <option value="5">5本帯</option>
+              <option value="6">6本帯</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- 抵抗グラフィック -->
+      <div class="resistor-stage">
+        <svg id="resistor-svg" viewBox="0 0 720 220" role="img" aria-label="抵抗のグラフィック。各バンドをクリックして色を変更できます。">
+          <defs>
+            <linearGradient id="bodyGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#f0dba8" />
+              <stop offset="0.45" stop-color="#e3c98c" />
+              <stop offset="1" stop-color="#c9ad6e" />
+            </linearGradient>
+          </defs>
+          <!-- リード線 -->
+          <line class="lead" x1="0" y1="110" x2="160" y2="110" />
+          <line class="lead" x1="560" y1="110" x2="720" y2="110" />
+          <!-- 本体 -->
+          <g class="resistor-body">
+            <rect x="150" y="55" width="420" height="110" rx="55" />
+            <ellipse class="cap cap-left" cx="178" cy="110" rx="22" ry="55" />
+            <ellipse class="cap cap-right" cx="542" cy="110" rx="22" ry="55" />
+          </g>
+          <!-- バンドはJSで描画 -->
+          <g id="bands-group"></g>
+        </svg>
+      </div>
+
+      <!-- 結果表示 -->
+      <div class="result">
+        <div class="result-value">
+          <span id="resistance-main">—</span>
+          <span class="result-unit" id="resistance-unit"></span>
+        </div>
+        <div class="result-meta">
+          <div class="meta-item">
+            <span class="meta-label">許容差</span>
+            <span class="meta-value" id="tolerance-value">—</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">範囲</span>
+            <span class="meta-value" id="range-value">—</span>
+          </div>
+          <div class="meta-item" id="tempco-item" hidden>
+            <span class="meta-label">温度係数</span>
+            <span class="meta-value" id="tempco-value">—</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">E系列</span>
+            <span class="meta-value" id="eseries-value">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- バンドの意味 凡例 -->
+      <div class="band-legend" id="band-legend"></div>
+
+      <p class="hint">💡 ヒント: 抵抗のバンドをクリックすると色を選べます。</p>
+    </section>
+
+    <!-- ===== サブ：LED電流制限抵抗 計算 ===== -->
+    <section class="card led-calc" aria-labelledby="led-heading">
+      <div class="card-head">
+        <h2 id="led-heading">LED 電流制限抵抗 計算</h2>
+      </div>
+      <p class="card-desc">電源電圧・LEDの順方向電圧・希望電流から、直列に入れる抵抗値を求めます。</p>
+
+      <div class="led-grid">
+        <div class="field">
+          <label for="led-vs">電源電圧 V<sub>S</sub> <span class="unit-tag">V</span></label>
+          <input type="number" id="led-vs" value="5" min="0" step="0.1" inputmode="decimal" />
+        </div>
+        <div class="field">
+          <label for="led-vf">LED順方向電圧 V<sub>F</sub> <span class="unit-tag">V</span></label>
+          <input type="number" id="led-vf" value="3" min="0" step="0.1" inputmode="decimal" />
+        </div>
+        <div class="field">
+          <label for="led-if">LED電流 I<sub>F</sub> <span class="unit-tag">mA</span></label>
+          <input type="number" id="led-if" value="100" min="0" step="1" inputmode="decimal" />
+        </div>
+      </div>
+
+      <div class="led-result" id="led-result">
+        <div class="led-main">
+          <span class="led-label">必要な抵抗値</span>
+          <span class="led-r" id="led-r">—</span>
+        </div>
+        <div class="led-sub">
+          <div class="meta-item">
+            <span class="meta-label">最も近いE24標準値</span>
+            <span class="meta-value" id="led-e24">—</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">抵抗での消費電力</span>
+            <span class="meta-value" id="led-power">—</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">推奨定格(2倍ディレーティング)</span>
+            <span class="meta-value" id="led-wattage">—</span>
+          </div>
+        </div>
+        <p class="led-formula" id="led-formula"></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>抵抗カラーコード デコーダー — クリックして遊べる抵抗値計算ツール</p>
+  </footer>
+
+  <!-- カラーパレット ポップオーバー -->
+  <div id="palette" class="palette" hidden role="dialog" aria-label="バンドの色を選択">
+    <div class="palette-title" id="palette-title">色を選択</div>
+    <div class="palette-grid" id="palette-grid"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
