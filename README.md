@@ -1,7 +1,7 @@
 # 抵抗カラーコード デコーダー
 
 抵抗のカラーバンドを **クリックして色を変えるだけ** で抵抗値が計算できる、直感的でデザイン性の高い Web ツールです。
-おまけに **LED の電流制限抵抗** も計算できます。
+おまけに **LED の電流制限抵抗** も計算できます。  
 [https://tsubokulab.github.io/resistor-color-decoder/](https://tsubokulab.github.io/resistor-color-decoder/)
 
 ![type:静的サイト](https://img.shields.io/badge/build-none-brightgreen) ![lang:日本語](https://img.shields.io/badge/lang-日本語-blue)
