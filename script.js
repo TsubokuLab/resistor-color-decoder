@@ -106,10 +106,10 @@ function renderBands() {
     const glow = document.createElementNS("http://www.w3.org/2000/svg", "rect");
     glow.setAttribute("class", "band-glow");
     glow.setAttribute("x", x - 4);
-    glow.setAttribute("y", 48);
+    glow.setAttribute("y", 44);
     glow.setAttribute("width", bandW + 8);
-    glow.setAttribute("height", 124);
-    glow.setAttribute("rx", 8);
+    glow.setAttribute("height", 132);
+    glow.setAttribute("rx", 6);
     glow.setAttribute("fill", "none");
     glow.setAttribute("stroke", "#fff");
     glow.setAttribute("stroke-width", "2");
@@ -118,10 +118,10 @@ function renderBands() {
 
     const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
     rect.setAttribute("x", x);
-    rect.setAttribute("y", 55);
+    rect.setAttribute("y", 44);
     rect.setAttribute("width", bandW);
-    rect.setAttribute("height", 110);
-    rect.setAttribute("rx", 4);
+    rect.setAttribute("height", 132);
+    rect.setAttribute("rx", 0);
     rect.setAttribute("fill", color ? color.hex : "#888");
     g.appendChild(rect);
 

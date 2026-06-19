@@ -68,22 +68,28 @@
               <stop offset="0.45" stop-color="#e3c98c" />
               <stop offset="1" stop-color="#c9ad6e" />
             </linearGradient>
+            <clipPath id="bodyClip">
+              <ellipse cx="360" cy="110" rx="235" ry="64" />
+            </clipPath>
           </defs>
           <!-- リード線 -->
-          <line class="lead" x1="0" y1="110" x2="160" y2="110" />
-          <line class="lead" x1="560" y1="110" x2="720" y2="110" />
-          <!-- 本体 -->
+          <line class="lead" x1="0" y1="110" x2="170" y2="110" />
+          <line class="lead" x1="550" y1="110" x2="720" y2="110" />
+          <!-- 本体（横長の楕円1個） -->
           <g class="resistor-body">
-            <rect x="150" y="55" width="420" height="110" rx="55" />
-            <ellipse class="cap cap-left" cx="178" cy="110" rx="22" ry="55" />
-            <ellipse class="cap cap-right" cx="542" cy="110" rx="22" ry="55" />
+            <ellipse cx="360" cy="110" rx="235" ry="64" />
           </g>
-          <!-- バンドはJSで描画 -->
-          <g id="bands-group"></g>
+          <!-- バンドはJSで描画（本体の楕円形にクリップ） -->
+          <g id="bands-group" clip-path="url(#bodyClip)"></g>
         </svg>
       </div>
 
-      <!-- 結果表示 -->
+      <!-- 選択中の色（抵抗画像の直下） -->
+      <div class="band-legend" id="band-legend"></div>
+
+      <p class="hint">💡 ヒント: 抵抗のバンドをクリックすると色を選べます。</p>
+
+      <!-- 結果表示（セクション最下部） -->
       <div class="result">
         <div class="result-value">
           <span id="resistance-main">—</span>
@@ -108,11 +114,6 @@
           </div>
         </div>
       </div>
-
-      <!-- バンドの意味 凡例 -->
-      <div class="band-legend" id="band-legend"></div>
-
-      <p class="hint">💡 ヒント: 抵抗のバンドをクリックすると色を選べます。</p>
     </section>
 
     <!-- ===== サブ：LED電流制限抵抗 計算 ===== -->

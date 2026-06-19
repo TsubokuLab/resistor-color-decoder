@@ -126,6 +126,12 @@ select {
   border-radius: 12px;
   font-size: 14px; font-family: inherit;
   cursor: pointer;
+  color-scheme: dark; /* ネイティブのドロップダウンを暗色に */
+}
+/* 展開時のリスト（白地に白文字の同化を防ぐ） */
+select option {
+  background: #131b38;
+  color: var(--text);
 }
 select:focus-visible, input:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 1px; }
 
@@ -136,12 +142,10 @@ select:focus-visible, input:focus-visible { outline: 2px solid var(--accent-2); 
 }
 #resistor-svg { width: 100%; height: auto; display: block; }
 .lead { stroke: #8a93a8; stroke-width: 7; stroke-linecap: round; }
-.resistor-body rect {
+.resistor-body ellipse {
   fill: url(#bodyGrad);
 }
 .resistor-body { filter: drop-shadow(0 10px 18px rgba(0,0,0,0.45)); }
-.cap { fill: #c9b079; }
-.cap-left { fill: #d8c189; }
 
 .band {
   cursor: pointer;
@@ -155,6 +159,7 @@ select:focus-visible, input:focus-visible { outline: 2px solid var(--accent-2); 
 
 /* 結果 */
 .result {
+  margin-top: 22px;
   background: linear-gradient(180deg, rgba(255,176,32,0.10), rgba(255,176,32,0.02));
   border: 1px solid rgba(255,176,32,0.22);
   border-radius: 16px;
@@ -355,12 +360,12 @@ input[type="number"] {
 .swatch:hover { transform: scale(1.08); box-shadow: 0 0 0 2px var(--accent-2); }
 .swatch.active { box-shadow: 0 0 0 2px #fff; }
 .swatch .sw-label {
-  font-size: 9px;
-  color: rgba(255,255,255,0.92);
-  text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+  font-size: 12px;
+  color: rgba(255,255,255,0.6);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.45);
   font-weight: 600;
 }
-.swatch[data-light="true"] .sw-label { color: #222; text-shadow: none; }
+.swatch[data-light="true"] .sw-label { color: rgba(0,0,0,0.55); text-shadow: none; }
 
 @media (max-width: 560px) {
   .card { padding: 20px; }
