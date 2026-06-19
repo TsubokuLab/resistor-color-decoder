@@ -69,15 +69,15 @@
               <stop offset="1" stop-color="#c9ad6e" />
             </linearGradient>
             <clipPath id="bodyClip">
-              <ellipse cx="360" cy="110" rx="235" ry="64" />
+              <rect x="130" y="46" width="460" height="128" rx="64" ry="64" />
             </clipPath>
           </defs>
           <!-- リード線 -->
           <line class="lead" x1="0" y1="110" x2="170" y2="110" />
           <line class="lead" x1="550" y1="110" x2="720" y2="110" />
-          <!-- 本体（横長の楕円1個） -->
+          <!-- 本体（角丸長方形・縦方向の角丸を最大化） -->
           <g class="resistor-body">
-            <ellipse cx="360" cy="110" rx="235" ry="64" />
+            <rect x="130" y="46" width="460" height="128" rx="64" ry="64" />
           </g>
           <!-- バンドはJSで描画（本体の楕円形にクリップ） -->
           <g id="bands-group" clip-path="url(#bodyClip)"></g>
@@ -87,7 +87,7 @@
       <!-- 選択中の色（抵抗画像の直下） -->
       <div class="band-legend" id="band-legend"></div>
 
-      <p class="hint">💡 ヒント: 抵抗のバンドをクリックすると色を選べます。</p>
+      <p class="hint">💡 ヒント: 抵抗のバンド、または下の色ボタンをクリックすると色を選べます。</p>
 
       <!-- 結果表示（セクション最下部） -->
       <div class="result">

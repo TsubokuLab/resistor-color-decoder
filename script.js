@@ -227,8 +227,11 @@ function renderLegend() {
     else if (role === "tol") meaning = c.tol != null ? `±${c.tol}%` : "—";
     else if (role === "tc") meaning = c.tc != null ? `${c.tc}ppm/K` : "—";
 
-    const item = document.createElement("div");
-    item.className = "legend-item";
+    const item = document.createElement("button");
+    item.type = "button";
+    item.className = "legend-item" + (activeBandIndex === i ? " active" : "");
+    item.setAttribute("data-index", i);
+    item.setAttribute("aria-label", `${i + 1}番目のバンド（${ROLE_INFO[role].label}）: ${c.name}。クリックで色を変更`);
     item.innerHTML = `
       <span class="legend-swatch" style="background:${c.hex}"></span>
       <span class="legend-text"><b>${i + 1}. ${c.name}</b> <span>${meaning}</span></span>
@@ -269,7 +272,8 @@ function openPalette(index, anchorEl) {
 
   palette.hidden = false;
   positionPalette(anchorEl);
-  renderBands(); // selected-band の表示更新
+  renderBands();   // selected-band の表示更新
+  renderLegend();  // 凡例ボタンのアクティブ表示を同期
 }
 
 function positionPalette(anchorEl) {
@@ -293,6 +297,7 @@ function closePalette() {
   palette.hidden = true;
   activeBandIndex = null;
   renderBands();
+  renderLegend();
 }
 
 /* =========================================================
@@ -313,10 +318,20 @@ bandsGroup.addEventListener("keydown", (e) => {
   openPalette(idx, g);
 });
 
+// 凡例ボタン（抵抗の下の色表示）からも同じパレットを開く
+const bandLegend = $("band-legend");
+bandLegend.addEventListener("click", (e) => {
+  const item = e.target.closest(".legend-item");
+  if (!item) return;
+  const idx = parseInt(item.getAttribute("data-index"), 10);
+  openPalette(idx, item);
+});
+
 document.addEventListener("click", (e) => {
   if (palette.hidden) return;
   if (palette.contains(e.target)) return;
   if (e.target.closest(".band")) return;
+  if (e.target.closest(".legend-item")) return;
   closePalette();
 });
 document.addEventListener("keydown", (e) => {
