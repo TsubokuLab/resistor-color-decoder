@@ -439,12 +439,11 @@ function setupShare() {
   const btn = $("share-x");
   if (!btn) return;
   const url = location.href.split("#")[0];
-  const text = "抵抗カラーコード デコーダー｜バンドをクリックするだけで抵抗値を計算できるツール";
+  const text = "抵抗カラーコード変換｜バンドをクリックするだけで抵抗値を計算できるツール";
   const intent =
     "https://twitter.com/intent/tweet?" +
     "text=" + encodeURIComponent(text) +
-    "&url=" + encodeURIComponent(url) +
-    "&hashtags=" + encodeURIComponent("電子工作,抵抗");
+    "&url=" + encodeURIComponent(url);
   btn.setAttribute("href", intent);
 }
 
