@@ -22,7 +22,7 @@
       <stop offset="1" stop-color="#ffd56b"/>
     </linearGradient>
     <clipPath id="bodyClip">
-      <rect x="440" y="338" width="320" height="110" rx="55" ry="55"/>
+      <rect x="380" y="358" width="440" height="124" rx="62" ry="62"/>
     </clipPath>
   </defs>
 
@@ -33,26 +33,23 @@
   <!-- 枠 -->
   <rect x="16" y="16" width="1168" height="598" rx="28" fill="none" stroke="#ffffff" stroke-opacity="0.08" stroke-width="2"/>
 
-  <!-- テキスト（上寄せ） -->
-  <text x="600" y="112" text-anchor="middle" fill="#ffb020" font-size="29" font-weight="bold" letter-spacing="8">RESISTOR COLOR DECODER</text>
-  <text x="600" y="214" text-anchor="middle" fill="#eef2ff" font-size="80" font-weight="bold">抵抗カラーコード<tspan fill="url(#accentText)">変換</tspan></text>
-  <text x="600" y="284" text-anchor="middle" fill="#9aa6c7" font-size="30">抵抗の色から抵抗値を計算できるツール</text>
+  <!-- テキスト（上部） -->
+  <text x="600" y="120" text-anchor="middle" fill="#ffb020" font-size="29" font-weight="bold" letter-spacing="8">RESISTOR COLOR DECODER</text>
+  <text x="600" y="222" text-anchor="middle" fill="#eef2ff" font-size="84" font-weight="bold">抵抗カラーコード<tspan fill="url(#accentText)">変換</tspan></text>
+  <text x="600" y="294" text-anchor="middle" fill="#9aa6c7" font-size="30">抵抗の色から抵抗値を計算できるツール</text>
 
-  <!-- 抵抗グラフィック -->
+  <!-- 抵抗グラフィック（大きめ） -->
   <g>
-    <line x1="320" y1="393" x2="455" y2="393" stroke="#8a93a8" stroke-width="8" stroke-linecap="round"/>
-    <line x1="745" y1="393" x2="880" y2="393" stroke="#8a93a8" stroke-width="8" stroke-linecap="round"/>
-    <rect x="440" y="338" width="320" height="110" rx="55" ry="55" fill="url(#bodyGrad)"/>
+    <line x1="240" y1="420" x2="395" y2="420" stroke="#8a93a8" stroke-width="9" stroke-linecap="round"/>
+    <line x1="805" y1="420" x2="960" y2="420" stroke="#8a93a8" stroke-width="9" stroke-linecap="round"/>
+    <rect x="380" y="358" width="440" height="124" rx="62" ry="62" fill="url(#bodyGrad)"/>
     <g clip-path="url(#bodyClip)">
-      <rect x="515" y="330" width="26" height="126" fill="#d33a2c"/>
-      <rect x="563" y="330" width="26" height="126" fill="#d33a2c"/>
-      <rect x="631" y="330" width="26" height="126" fill="#7d4a23"/>
-      <rect x="700" y="330" width="26" height="126" fill="#c9a227"/>
+      <rect x="470" y="350" width="30" height="140" fill="#d33a2c"/>
+      <rect x="528" y="350" width="30" height="140" fill="#d33a2c"/>
+      <rect x="604" y="350" width="30" height="140" fill="#7d4a23"/>
+      <rect x="706" y="350" width="30" height="140" fill="#c9a227"/>
     </g>
     <!-- 抵抗値（抵抗のすぐ下） -->
-    <text x="600" y="540" text-anchor="middle" fill="#eef2ff" font-size="64" font-weight="bold">220<tspan fill="url(#accentText)"> Ω</tspan></text>
+    <text x="600" y="566" text-anchor="middle" fill="#eef2ff" font-size="62" font-weight="bold">220<tspan fill="url(#accentText)"> Ω</tspan></text>
   </g>
-
-  <!-- フッター -->
-  <text x="600" y="592" text-anchor="middle" fill="#5b8cff" font-size="26">tsubokulab.github.io/resistor-color-decoder　·　制作 @kohack_v</text>
 </svg>
