@@ -51,6 +51,6 @@
     </g>
     <!-- 抵抗値（抵抗のすぐ下・角丸枠で囲む） -->
     <rect x="426" y="506" width="348" height="98" rx="26" fill="#ffb020" fill-opacity="0.08" stroke="#ffb020" stroke-opacity="0.5" stroke-width="2.5"/>
-    <text x="600" y="557" text-anchor="middle" dominant-baseline="central" fill="#eef2ff" font-size="80" font-weight="bold">220<tspan fill="url(#accentText)"> Ω</tspan></text>
+    <text x="600" y="590" text-anchor="middle" fill="#eef2ff" font-size="80" font-weight="bold">220<tspan fill="url(#accentText)"> Ω</tspan></text>
   </g>
 </svg>
